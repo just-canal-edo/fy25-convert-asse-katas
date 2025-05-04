@@ -1,0 +1,20 @@
+version: '3.2'
+
+services:
+  mars-rover_service:
+    build:
+      context: ./mars-rover-service
+    container_name: mars-rover_service
+    ports:
+      - 8080:8080
+      - 8787:8787
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/mars-rover-service/api/engineering/ping"]
+      interval: 5s
+      timeout: 2s
+      retries: 200
+
+networks:
+  default:
+    external:
+      name: mars-rover_net

@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "359f2baa-f739-4efa-be06-ee2c38a11c85",
+		"name": "MARS ROVER Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5479325"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/mars-rover-service/api/engineering/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mars-rover-service",
+						"api",
+						"engineering",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "place Rover1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"roverId\": \"Rover1\",\n    \"plateauId\": \"Mars\",\n    \"plateauXSize\": 10,\n    \"plateauYSize\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/mars-rover-service/api/rover/placeRover",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mars-rover-service",
+						"api",
+						"rover",
+						"placeRover"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "place Rover2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"roverId\": \"Rover2\",\n    \"plateauId\": \"Mars\",\n    \"plateauXSize\": 10,\n    \"plateauYSize\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/mars-rover-service/api/rover/placeRover",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mars-rover-service",
+						"api",
+						"rover",
+						"placeRover"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "move Rover1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"command\": \"MMRMMLM\",\n    \"roverId\": \"Rover1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/mars-rover-service/api/rover/moveRover",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mars-rover-service",
+						"api",
+						"rover",
+						"moveRover"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "move Rover2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"command\": \"MMMMMMMMMM\",\n    \"roverId\": \"Rover2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/mars-rover-service/api/rover/moveRover",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mars-rover-service",
+						"api",
+						"rover",
+						"moveRover"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
