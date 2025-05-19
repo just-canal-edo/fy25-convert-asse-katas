@@ -2,8 +2,8 @@ package com.odigeo.rover.controller;
 
 import com.odigeo.rover.contract.RoverMoveResponse;
 import com.odigeo.rover.contract.RoverMoveRequest;
-import com.odigeo.rover.contract.RoverPlaceRequest;
-import com.odigeo.rover.contract.RoverPlaceResponse;
+import com.odigeo.rover.contract.RoverDeployRequest;
+import com.odigeo.rover.contract.RoverDeployResponse;
 import com.odigeo.rover.model.Plateau;
 import com.odigeo.rover.model.Rover;
 import com.odigeo.rover.service.PlateauService;
@@ -31,13 +31,13 @@ public class RoverController implements RoverRestUI {
 
     @Override
     @POST
-    @Path("/placeRover")
-    public RoverPlaceResponse placeRover(RoverPlaceRequest roverPlaceRequest) {
-        final Plateau plateau = plateauService.createOrRetrivePlateau(roverPlaceRequest.getPlateauId(), roverPlaceRequest.getPlateauXSize(), roverPlaceRequest.getPlateauYSize());
+    @Path("/deployRover")
+    public RoverDeployResponse deployRover(RoverDeployRequest roverDeployRequest) {
+        final Plateau plateau = plateauService.createOrRetrivePlateau(roverDeployRequest.getPlateauId(), roverDeployRequest.getPlateauXSize(), roverDeployRequest.getPlateauYSize());
 
-        final Rover rover = roverService.placeRover(roverPlaceRequest.getRoverId(), plateau);
+        final Rover rover = roverService.placeRover(roverDeployRequest, plateau);
 
-        return new RoverPlaceResponse(rover.getRoverId(), rover.getPlateau().getPlateauId(), rover.reportRoverStatus());
+        return new RoverDeployResponse(rover.getRoverId(), rover.getPlateau().getPlateauId(), rover.reportRoverStatus());
     }
 
     @Override

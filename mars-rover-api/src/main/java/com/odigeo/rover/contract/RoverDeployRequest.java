@@ -1,8 +1,11 @@
 package com.odigeo.rover.contract;
 
-public class RoverPlaceRequest {
+public class RoverDeployRequest {
 
     private String roverId;
+    private int positionX;
+    private int positionY;
+    private String direction;
     private String plateauId;
     private int plateauXSize;
     private int plateauYSize;
@@ -37,5 +40,24 @@ public class RoverPlaceRequest {
 
     public void setPlateauYSize(int plateauYSize) {
         this.plateauYSize = plateauYSize;
+    }
+
+    public int getPositionX() {
+        return positionX;
+    }
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
+    }
+    public int getPositionY() {
+        return positionY;
+    }
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
+    }
+    public String getDirection() {
+        return direction;
+    }
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }

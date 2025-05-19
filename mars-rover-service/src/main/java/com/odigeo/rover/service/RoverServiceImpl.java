@@ -1,5 +1,6 @@
 package com.odigeo.rover.service;
 
+import com.odigeo.rover.contract.RoverDeployRequest;
 import com.odigeo.rover.contract.RoverMoveRequest;
 import com.odigeo.rover.model.Plateau;
 import com.odigeo.rover.model.Rover;
@@ -17,8 +18,8 @@ public class RoverServiceImpl implements RoverService {
     private RoverRepository roverRepository;
 
     @Override
-    public Rover placeRover(String roverId, Plateau plateau) {
-        return roverRepository.placeRover(roverId, plateau);
+    public Rover placeRover(RoverDeployRequest roverDeployRequest, Plateau plateau) {
+        return roverRepository.placeRover(roverDeployRequest, plateau);
     }
 
     @Override

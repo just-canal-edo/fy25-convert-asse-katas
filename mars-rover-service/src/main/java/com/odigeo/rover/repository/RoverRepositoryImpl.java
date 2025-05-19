@@ -1,13 +1,16 @@
 package com.odigeo.rover.repository;
 
+import com.odigeo.rover.contract.RoverDeployRequest;
 import com.odigeo.rover.contract.RoverMoveRequest;
 import com.odigeo.rover.exception.RoverAlreadyPlacedException;
 import com.odigeo.rover.exception.RoverNotFoundException;
 import com.odigeo.rover.model.Plateau;
 import com.odigeo.rover.model.Rover;
 import com.odigeo.rover.model.RoverImpl;
+import com.odigeo.rover.service.command.CommandProcessor;
 
-import javax.ejb.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,20 +19,24 @@ import java.util.concurrent.ConcurrentHashMap;
 @Singleton
 public class RoverRepositoryImpl implements RoverRepository {
 
+    @Inject
+    private CommandProcessor commandProcessor;
+
     private Map<String, Rover> roverStore = new ConcurrentHashMap<>();
 
     @Override
-    public Rover placeRover(String roverId, Plateau plateau) {
-        if (roverId == null) {
-            throw new IllegalArgumentException("Invalid roverId: " + roverId);
+    public Rover placeRover(RoverDeployRequest roverDeployRequest, Plateau plateau) {
+        if (roverDeployRequest.getRoverId() == null) {
+            throw new IllegalArgumentException("Invalid roverId: " + roverDeployRequest.getRoverId());
         }
         if (plateau == null) {
             throw new IllegalArgumentException("Invalid plateau: " + plateau);
         }
-        if (roverStore.containsKey(roverId)) {
-            throw new RoverAlreadyPlacedException(roverId);
+        if (roverStore.containsKey(roverDeployRequest.getRoverId() )) {
+            throw new RoverAlreadyPlacedException(roverDeployRequest.getRoverId() );
         } else {
-            final Rover marsRover = new RoverImpl(roverId, plateau);
+            final Rover marsRover = new RoverImpl(roverDeployRequest.getRoverId(), roverDeployRequest.getPositionX(),
+                    roverDeployRequest.getPositionY(), roverDeployRequest.getDirection(), plateau);
             roverStore.put(marsRover.getRoverId(), marsRover);
 
             return marsRover;
@@ -43,7 +50,7 @@ public class RoverRepositoryImpl implements RoverRepository {
         }
         if (roverStore.containsKey(request.getRoverId())) {
             Rover rover = roverStore.get(request.getRoverId());
-            rover.move(request.getCommand());
+            commandProcessor.processCommand(request.getCommand(), rover);
             return rover;
         } else {
             throw new RoverNotFoundException(request.getRoverId());
@@ -52,7 +59,6 @@ public class RoverRepositoryImpl implements RoverRepository {
 
     @Override
     public List<Rover> getAllRovers() {
-        // Implementation to get all rovers
         return new ArrayList<>(roverStore.values());
     }
 }

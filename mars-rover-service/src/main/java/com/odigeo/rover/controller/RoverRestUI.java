@@ -2,12 +2,12 @@ package com.odigeo.rover.controller;
 
 import com.odigeo.rover.contract.RoverMoveResponse;
 import com.odigeo.rover.contract.RoverMoveRequest;
-import com.odigeo.rover.contract.RoverPlaceRequest;
-import com.odigeo.rover.contract.RoverPlaceResponse;
+import com.odigeo.rover.contract.RoverDeployRequest;
+import com.odigeo.rover.contract.RoverDeployResponse;
 
 public interface RoverRestUI {
 
-    RoverPlaceResponse placeRover(RoverPlaceRequest roverPlaceRequest);
+    RoverDeployResponse deployRover(RoverDeployRequest roverDeployRequest);
 
     RoverMoveResponse moveRover(RoverMoveRequest roverMoveRequest);
 

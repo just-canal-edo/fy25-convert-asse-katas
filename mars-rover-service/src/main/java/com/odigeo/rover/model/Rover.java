@@ -2,9 +2,13 @@ package com.odigeo.rover.model;
 
 public interface Rover {
 
-    String move(String command);
+    void rotateDirectionRight();
 
-    public String reportRoverStatus();
+    void rotateDirectionLeft();
+
+    void moveForward();
+
+    String reportRoverStatus();
 
     String getRoverId();
 

@@ -1,12 +1,12 @@
 package com.odigeo.rover.contract;
 
-public class RoverPlaceResponse {
+public class RoverDeployResponse {
 
     private String roverId;
     private String plateauId;
     private String startingPoint;
 
-    public RoverPlaceResponse(String roverId, String plateauId, String startingPoint) {
+    public RoverDeployResponse(String roverId, String plateauId, String startingPoint) {
         this.roverId = roverId;
         this.plateauId = plateauId;
         this.startingPoint = startingPoint;
