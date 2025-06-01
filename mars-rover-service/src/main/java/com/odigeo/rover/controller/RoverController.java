@@ -35,7 +35,7 @@ public class RoverController implements RoverRestUI {
     public RoverDeployResponse deployRover(RoverDeployRequest roverDeployRequest) {
         final Plateau plateau = plateauService.createOrRetrivePlateau(roverDeployRequest.getPlateauId(), roverDeployRequest.getPlateauXSize(), roverDeployRequest.getPlateauYSize());
 
-        final Rover rover = roverService.placeRover(roverDeployRequest, plateau);
+        final Rover rover = roverService.deployRover(roverDeployRequest, plateau);
 
         return new RoverDeployResponse(rover.getRoverId(), rover.getPlateau().getPlateauId(), rover.reportRoverStatus());
     }

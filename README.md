@@ -102,3 +102,37 @@ Rovers must be deployable to a specific position and orientation on a chosen pla
 * Ensure deployments are within the bounds of the planet’s grid.
   
 If necessary create a class diagram or one or more sequence diagrams.
+
+### 2nd evolution
+
+**Mandatory:**
+
+**Collision Management**
+
+* Ensure rovers do not collide with:
+
+  * Other rovers.
+  * Obstacles.
+  
+* If a collision is imminent:
+  * Either prevent the movement or handle it gracefully (e.g., by stopping or rerouting).
+
+**Astronaut API**
+
+Define and implement the API for astronauts (execute and deploy operations)
+
+Only 1 astronaut at a time, no concurrency
+
+Choose between 1 or 2 or do both
+
+1. Deploying Multiple Rovers to the Same Planet
+   Allow multiple rovers to operate on the same planet.
+   Each rover must:
+   Have a unique identifier or name.
+   Avoid starting in the same position as another rover.
+2. Grid with Obstacles
+   Enhance the planet’s grid to include obstacles like mountains, water, craters(free creation of planets).
+   Rovers must:
+   Detect obstacles in their path.
+   Avoid collisions with obstacles during movement.
+

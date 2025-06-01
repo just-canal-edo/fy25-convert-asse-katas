@@ -7,7 +7,7 @@ import com.odigeo.rover.model.Rover;
 
 public interface RoverService {
 
-    Rover placeRover(RoverDeployRequest roverDeployRequest, Plateau plateau);
+    Rover deployRover(RoverDeployRequest roverDeployRequest, Plateau plateau);
 
     Rover moveRover(RoverMoveRequest request);
 

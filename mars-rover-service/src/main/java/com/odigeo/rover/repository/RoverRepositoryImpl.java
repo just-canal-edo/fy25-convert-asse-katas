@@ -25,15 +25,15 @@ public class RoverRepositoryImpl implements RoverRepository {
     private Map<String, Rover> roverStore = new ConcurrentHashMap<>();
 
     @Override
-    public Rover placeRover(RoverDeployRequest roverDeployRequest, Plateau plateau) {
+    public Rover deployRover(RoverDeployRequest roverDeployRequest, Plateau plateau) {
         if (roverDeployRequest.getRoverId() == null) {
-            throw new IllegalArgumentException("Invalid roverId: " + roverDeployRequest.getRoverId());
+            throw new IllegalArgumentException(String.format("Invalid roverId: %s" ,roverDeployRequest.getRoverId()));
         }
         if (plateau == null) {
-            throw new IllegalArgumentException("Invalid plateau: " + plateau);
+            throw new IllegalArgumentException(String.format("Invalid plateau: %s", plateau));
         }
-        if (roverStore.containsKey(roverDeployRequest.getRoverId() )) {
-            throw new RoverAlreadyPlacedException(roverDeployRequest.getRoverId() );
+        if (roverStore.containsKey(roverDeployRequest.getRoverId())) {
+            throw new RoverAlreadyPlacedException(roverStore.get(roverDeployRequest.getRoverId()));
         } else {
             final Rover marsRover = new RoverImpl(roverDeployRequest.getRoverId(), roverDeployRequest.getPositionX(),
                     roverDeployRequest.getPositionY(), roverDeployRequest.getDirection(), plateau);
@@ -46,7 +46,7 @@ public class RoverRepositoryImpl implements RoverRepository {
     @Override
     public Rover moveRover(RoverMoveRequest request) {
         if (request.getRoverId() == null) {
-            throw new IllegalArgumentException("Invalid roverId: " + request);
+            throw new IllegalArgumentException(String.format("Invalid roverId: %s", request.getRoverId()));
         }
         if (roverStore.containsKey(request.getRoverId())) {
             Rover rover = roverStore.get(request.getRoverId());

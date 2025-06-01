@@ -16,6 +16,11 @@ public class RoverImpl implements Rover {
     private void placeRover(int positionX, int positionY, Direction direction) throws IllegalArgumentException {
         if (!new Coordinate(positionX, positionY).coordinateIsOnPlateau(plateau.getPlateauXSize(), plateau.getPlateauYSize())) {
             throw new IllegalArgumentException("Position is out of bounds.");
+        } else {
+            final Rover occupiedRoverPosition = isOccupiedPosition(new Coordinate(positionX, positionY));
+            if (occupiedRoverPosition != null) {
+                throw new IllegalArgumentException(String.format("Position '%s' is already occupied by another rover: %s", occupiedRoverPosition.reportRoverStatus(),occupiedRoverPosition.getRoverId()));
+            }
         }
 
         this.position = new Coordinate(positionX, positionY);
@@ -27,12 +32,12 @@ public class RoverImpl implements Rover {
     public void moveForward() {
         final Coordinate newPosition = position.moveForward(direction, plateau);
 
-        /*if (isOccupiedPosition(newPosition)) {
-            throw new IllegalArgumentException("Position is already occupied by another rover.");
+        final Rover occupiedRoverPosition = isOccupiedPosition(newPosition);
+        if (occupiedRoverPosition != null) {
+            throw new IllegalArgumentException(String.format("Position '%s' is already occupied by another rover: %s", occupiedRoverPosition.reportRoverStatus(),occupiedRoverPosition.getRoverId()));
         } else {
             position = newPosition;
-        }*/
-        position = newPosition;
+        }
     }
 
     @Override
@@ -71,7 +76,7 @@ public class RoverImpl implements Rover {
         }
     }
 
-    private boolean isOccupiedPosition(Coordinate newPosition) {
+    private Rover isOccupiedPosition(Coordinate newPosition) {
         return plateau.isPlateauOccupied(newPosition.getPositionX(), newPosition.getPositionY());
     }
 

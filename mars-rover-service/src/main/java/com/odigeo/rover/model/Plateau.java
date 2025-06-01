@@ -20,13 +20,13 @@ public class Plateau {
         this.marsRovers = new ArrayList<>();
     }
 
-    public boolean isPlateauOccupied(int x, int y) {
+    public Rover isPlateauOccupied(int x, int y) {
         for (Rover rover : marsRovers) {
             if (rover.getPosition().getPositionX() == x && rover.getPosition().getPositionY() == y) {
-                return true;
+                return rover;
             }
         }
-        return false;
+        return null;
     }
     public void addRover(Rover rover) {
         /*if (!isPlateauOccupied(rover.getPosition().getPositionX(), rover.getPosition().getPositionY())) {

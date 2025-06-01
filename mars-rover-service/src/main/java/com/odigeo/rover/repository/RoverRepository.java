@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RoverRepository {
 
-    Rover placeRover(RoverDeployRequest roverDeployRequest, Plateau plateau);
+    Rover deployRover(RoverDeployRequest roverDeployRequest, Plateau plateau);
 
     Rover moveRover(RoverMoveRequest request);
 

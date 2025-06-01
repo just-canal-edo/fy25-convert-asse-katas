@@ -6,6 +6,8 @@ public class RoverMoveRequest {
 
     private String command;
 
+    private String plateauId;
+
     public String getCommand() {
         return command;
     }
@@ -20,5 +22,13 @@ public class RoverMoveRequest {
 
     public void setRoverId(String roverId) {
         this.roverId = roverId;
+    }
+
+    public String getPlateauId() {
+        return plateauId;
+    }
+
+    public void setPlateauId(String plateauId) {
+        this.plateauId = plateauId;
     }
 }
